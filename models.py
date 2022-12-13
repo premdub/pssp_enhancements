@@ -1,37 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort, session, send_file
+
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager 
-
-from base64 import b64encode
-import base64
-from io import BytesIO #Converts data from Database into bytes
-
-from dotenv import load_dotenv
-import os
-import datetime
-import uuid
-
-
 
 db = SQLAlchemy()
-
-load_dotenv()
-
-mysql_user = os.getenv("MYSQL_USER")
-mysql_password = os.getenv("MYSQL_PASSWORD")
-mysql_hostname = os.getenv("MYSQL_HOSTNAME")
-
-db = SQLAlchemy()
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://' + mysql_user + ':' + mysql_password + '@' + mysql_hostname + ':3306/patient_portal'
-# function to keep track of database changes within python environment and then save it to special file.
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# random characters/numbers for connection that will be forming to mysql. 
-app.secret_key = 'sdf#$#dfjkhdf0SDJH0df9fd98343fdfu34rf'
-
-db.init_app(app)
 
 ### Models ###
 class Users(db.Model):
@@ -75,20 +45,20 @@ class Patients(db.Model):
     mrn = db.Column(db.String(255))
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
-    zip_code = db.Column(db.String(255), nullable=True)
-    dob = db.Column(db.String(255), nullable=True)
     gender = db.Column(db.String(255), nullable=True)
+    dob = db.Column(db.String(255), nullable=True)
+    zip_code = db.Column(db.String(255), nullable=True)
     contact_mobile = db.Column(db.String(255), nullable=True)
     contact_home = db.Column(db.String(255), nullable=True)
 
     # this first function __init__ is to establish the class for python GUI
-    def __init__(self, mrn, first_name, last_name, zip_code, dob, gender, contact_mobile, contact_home):
+    def __init__(self, mrn, first_name, last_name, gender, dob, zip_code, contact_mobile, contact_home):
         self.mrn = mrn
         self.first_name = first_name
         self.last_name = last_name
-        self.zip_code = zip_code
-        self.dob = dob
         self.gender = gender
+        self.dob = dob
+        self.zip_code = zip_code
         self.contact_mobile = contact_mobile
         self.contact_home = contact_home
 
@@ -100,9 +70,9 @@ class Patients(db.Model):
             'mrn': self.mrn,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'zip_code': self.zip_code,
-            'dob': self.dob,
             'gender': self.gender,
+            'dob': self.dob,
+            'zip_code': self.zip_code,
             'contact_mobile': self.contact_mobile,
             'contact_home': self.contact_home
         }
@@ -187,7 +157,7 @@ class Medications(db.Model):
             'med_human_name': self.med_human_name
         }
 
-#--------------------------------------
+#-----------------------------
 class Procedures(db.Model):
     __tablename__ = 'treatments_procedures'
 
@@ -215,7 +185,7 @@ class Procedures_Patient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mrn = db.Column(db.String(255), db.ForeignKey('patients.mrn'))
     cpt_code = db.Column(db.String(255), db.ForeignKey(
-        'procedure.cpt_code'))
+        'treatments_procedures.cpt_code'))
 
     # this first function __init__ is to establish the class for python GUI
     def __init__(self, mrn, cpt_code):
@@ -230,11 +200,13 @@ class Procedures_Patient(db.Model):
             'cpt_code': self.cpt_code
         }
 
+
+
 #--------------------
 
 
 
- https://stackoverflow.com/questions/63690158/save-uploaded-image-to-database-on-flask
+#https://stackoverflow.com/questions/63690158/save-uploaded-image-to-database-on-flask
 class Patients_Photos(db.Model):
     __tablename__ = 'production_patient_photos'
 

@@ -269,14 +269,7 @@ def logout():
    return redirect(url_for('login'))
 
 
-
-
 app.register_blueprint(dashboard_blueprint, url_prefix='/dashboard')
-
-
-
-
-
 
 @app.route('/patient-image', methods=['GET', 'POST'])
 def patient_image():
