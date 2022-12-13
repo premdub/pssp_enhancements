@@ -42,14 +42,14 @@ from dashboard.blueprint import dashboard_blueprint
 ## Requirements
 - Visual Studio Code
 - MySQLWorkbench
-- Azure Database for MySQL flexible server
+- GCP Database for MySQL flexible server
 - Web Browser
 
 ## Resources
 
-[Initial Database Setup](https://github.com/csanicola74/patient_portal.git)
+[Initial Database Setup](https://github.com/premdub/csanicola74/patient_portal.git)
 
-[Previous Version](https://github.com/csanicola74/PssP.git)
+[Previous Version](https://github.com/premdub/PssP.git)
 
 [Reference Design and Setup](https://github.com/hantswilliams/HHA-504-2022.git)
 
@@ -62,8 +62,4 @@ from dashboard.blueprint import dashboard_blueprint
 2. Then can adjust css files for visualizations
 3. Finally can focus on proper app routing
 
-*This version of the PssP utilizes a different SQL Database layout (i.e. different tables) than the reference design. Both sets of tables, however, have been setup in MySql for testing purposes.*
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
