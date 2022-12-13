@@ -1,43 +1,40 @@
-# Run instructions 
+HHA504_assignment_9
 
-## IMPORTANT // GOTCHAS
-- BE SURE TO INSTALL https://pypi.org/project/mysqlclient/ 
-- you will need to install this before it can work 
-- IF that doesnt work (e.g., you are on a m1 processor): 
-    - do pip install `pip install pymysql` 
-    - and update mysql+mysqldb TO mysql+pymysql
-- .ENV file 
-    - be sure to put it in the rool directory, at the same the Part1_ Part6_ folders 
+CRUD PssP Enhancements
 
-## Details
+Further enhancements to the 'Patient Self Service Portal' with customization of the landing, login, registration, and account pages.
 
-- Since this version has the __main__, you can run this flask app using the pythong command: 
-    - `sudo python app.py` 
-- Or you can use python3 if that is what is found on your machine: 
-    - `sudo python3 app.py` 
-- The reason why we need `sudo` permissions here, is that if we are deploying our app on a remote server, to port :80, which is a special port (e.g., website traffic), we need to have elevated permissions
+Changes Include:
 
-## ENV file structure: 
-```
-MYSQL_USERNAME = "SDF"
-MYSQL_PASSWORD = "fSDFDF!"
-MYSQL_HOST = "104.343.111.186"
-```
+Customized landing page 
 
+customized login and registration pages matching the landing page 
 
-- Other notes to organize: 
-    - using the flask version of sqlalchemy https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/ 
-    - declaring models https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/models/
-    - connecting to a MySQL database https://docs.sqlalchemy.org/en/14/dialects/mysql.html#module-sqlalchemy.dialects.mysql.mysqldb 
+New user: 'Provider' with own registration page and patient editing capabilities 
 
-## Dependencies: 
-- pip install flask flask-sqlalchemy PyMySQL 
+New redesigned account page that includes the ability to edit and delete the username and email 
 
-## Future: 
-- Signin: 
-    - Azure AD ? 
-    - GCP Firebase ? 
-    - Build it ourselves? 
+Account page added to heading tab Redesign has only occurred on the landing, login, and registration pages with plans to redesign all other pages including the headings in future iterations.
 
-## Helpful tutorials: 
-- Example 1: https://morioh.com/p/f38e3272d126 
+Installation Use the package manager pip to install Flask.
+
+pip install Flask Usage from flask 
+import Flask, render_template, request, redirect, url_for, flash, jsonify, abort, session, send_file from flask_sqlalchemy import SQLAlchemy from flask_login import LoginManager
+
+from base64 import b64encode import base64 from io import BytesIO # Converts data from Database into bytes
+
+from dotenv import load_dotenv import os import datetime import uuid
+
+from models import db, Users, Patients, Conditions_Patient, Conditions, Medications_Patient, Medications, Patients_Photos from dashboard.blueprint import dashboard_blueprint Requirements Visual Studio Code MySQLWorkbench GCP Database for MySQL flexible server Web Browser Resources Initial Database Setup
+
+Previous Version
+
+Reference Design and Setup
+
+Useful Designing Tool
+
+Reference Templates
+
+Important Notes
+
+Make sure base code is down first Then can adjust css files for visualizations Finally can focus on proper app routing This version of the PssP utilizes a different SQL Database layout (i.e. different tables) than the reference design. Both sets of tables, however, have been setup in MySql for testing purposes.
