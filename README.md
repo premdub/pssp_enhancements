@@ -1,43 +1,54 @@
-# Run instructions 
+CRUD PssP Enhancements
+Further enhancements to the 'Patient Self Service Portal' with customization of the landing, login, registration, and account pages.
 
-## IMPORTANT // GOTCHAS
-- BE SURE TO INSTALL https://pypi.org/project/mysqlclient/ 
-- you will need to install this before it can work 
-- IF that doesnt work (e.g., you are on a m1 processor): 
-    - do pip install `pip install pymysql` 
-    - and update mysql+mysqldb TO mysql+pymysql
-- .ENV file 
-    - be sure to put it in the rool directory, at the same the Part1_ Part6_ folders 
+Changes Include:
 
-## Details
+Customized landing page that includes new logo
+customized login and registration pages matching the landing page design
+New user: 'Provider' with own registration page and patient editing capabilities
+New redesigned account page that includes the ability to edit and delete the username and email
+Account page added to heading tab
+Redesign has only occurred on the landing, login, and registration pages with plans to redesign all other pages including the headings in future iterations.
 
-- Since this version has the __main__, you can run this flask app using the pythong command: 
-    - `sudo python app.py` 
-- Or you can use python3 if that is what is found on your machine: 
-    - `sudo python3 app.py` 
-- The reason why we need `sudo` permissions here, is that if we are deploying our app on a remote server, to port :80, which is a special port (e.g., website traffic), we need to have elevated permissions
+Installation
+Use the package manager pip to install Flask.
 
-## ENV file structure: 
-```
-MYSQL_USERNAME = "SDF"
-MYSQL_PASSWORD = "fSDFDF!"
-MYSQL_HOST = "104.343.111.186"
-```
+pip install Flask
+
+Usage
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort, session, send_file
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+
+from base64 import b64encode
+import base64
+from io import BytesIO  # Converts data from Database into bytes
+
+from dotenv import load_dotenv
+import os
+import datetime
+import uuid
+
+from models import db, Users, Patients, Conditions_Patient, Conditions, Medications_Patient, Medications, Patients_Photos
+from dashboard.blueprint import dashboard_blueprint
 
 
-- Other notes to organize: 
-    - using the flask version of sqlalchemy https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/ 
-    - declaring models https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/models/
-    - connecting to a MySQL database https://docs.sqlalchemy.org/en/14/dialects/mysql.html#module-sqlalchemy.dialects.mysql.mysqldb 
+Requirements
+Visual Studio Code
+MySQLWorkbench
+Azure Database for MySQL flexible server
+Web Browser
 
-## Dependencies: 
-- pip install flask flask-sqlalchemy PyMySQL 
 
-## Future: 
-- Signin: 
-    - Azure AD ? 
-    - GCP Firebase ? 
-    - Build it ourselves? 
+Resources
+Initial Database Setup: https://github.com/premdub/patient_portal
 
-## Helpful tutorials: 
-- Example 1: https://morioh.com/p/f38e3272d126 
+Previous Version:https://github.com/premdub/PssP
+
+Reference Design and Setup: https://github.com/hantswilliams/HHA-504-2022
+
+Useful Designing Tool:https://codepen.io/
+
+Reference Templates: https://freefrontend.com/
+
+
