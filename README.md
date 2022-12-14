@@ -59,3 +59,4 @@ from dashboard.blueprint import dashboard_blueprint
 
 [Reference Templates](https://freefrontend.com/)
 
+_
